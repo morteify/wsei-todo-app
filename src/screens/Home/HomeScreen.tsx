@@ -7,14 +7,15 @@ const HeaderImage = styled.Image`
   height: 200px;
 `;
 
-const PlaceholderText = styled.Text`
-  color: black;
+const Paragraph = styled.Text`
+  color: #393846;
 `;
 
 const TitleText = styled.Text`
   font-weight: bold;
   font-size: 22px;
   padding-bottom: 10px;
+  color: #253846;
 `;
 
 const TextContainer = styled.View`
@@ -32,7 +33,7 @@ export default function HomeScreen() {
       />
       <TextContainer>
         <TitleText>Lorem ipsum dolor</TitleText>
-        <PlaceholderText>
+        <Paragraph>
           Whales roam throughout all of the world's oceans, communicating with
           complex and mysterious sounds. Their sheer size amazes us: the blue
           whale can reach lengths of more than 100 feet and weigh up to 200
@@ -68,7 +69,7 @@ export default function HomeScreen() {
           and international levels. We also create opportunities for local
           communities to be involved with and profit from whale conservation
           initiatives.
-        </PlaceholderText>
+        </Paragraph>
       </TextContainer>
     </ScrollView>
   );
