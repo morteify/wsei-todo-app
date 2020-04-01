@@ -10,7 +10,8 @@ type Action =
 export interface Todo {
   id: Symbol;
   date: number;
-  content: string;
+  title: string;
+  description: string;
 }
 
 export interface Todos {
@@ -24,7 +25,6 @@ const initialState: Todos = {
 function todoReducer(state = initialState, action: Action) {
   switch (action.type) {
     case ADD_TODO:
-      console.log(action);
       return { ...state, todos: [...state.todos, action.payload] };
     case REMOVE_TODO:
       const filteredTodos = state.todos.filter((item: Todo, index: number) => {
@@ -34,7 +34,8 @@ function todoReducer(state = initialState, action: Action) {
     case UPDATE_TODO:
       const updatedTodos = state.todos.map((item: Todo, index: number) => {
         if (item.id === action.payload.id) {
-          item.content = action.payload.content;
+          item.title = action.payload.title;
+          item.description = action.payload.description;
         }
       });
       return { ...state, todos: updatedTodos };

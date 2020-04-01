@@ -3,7 +3,8 @@ import { ADD_TODO, REMOVE_TODO, UPDATE_TODO } from "./../constants/actionTypes";
 interface Todo {
   id: Symbol;
   date: number;
-  content: string;
+  title: string;
+  description: string;
 }
 
 export function addTodo(payload: Todo) {
