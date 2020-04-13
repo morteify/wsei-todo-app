@@ -1,11 +1,8 @@
-import { ADD_TODO, REMOVE_TODO, UPDATE_TODO } from "../constants/actionTypes";
-import { AnyAction } from "react-redux";
-import { addTodo, updateTodo, removeTodo } from "../actions";
+import { ADD_TODO, REMOVE_TODO, UPDATE_TODO } from '../constants/actionTypes';
+import { AnyAction } from 'react-redux';
+import { addTodo, updateTodo, removeTodo } from '../actions';
 
-type Action =
-  | ReturnType<typeof addTodo>
-  | ReturnType<typeof updateTodo>
-  | ReturnType<typeof removeTodo>;
+type Action = ReturnType<typeof addTodo> | ReturnType<typeof updateTodo> | ReturnType<typeof removeTodo>;
 
 export interface Todo {
   id: Symbol;
@@ -19,7 +16,7 @@ export interface Todos {
 }
 
 const initialState: Todos = {
-  todos: []
+  todos: [],
 };
 
 function todoReducer(state = initialState, action: Action) {
@@ -37,6 +34,7 @@ function todoReducer(state = initialState, action: Action) {
           item.title = action.payload.title;
           item.description = action.payload.description;
         }
+        return item;
       });
       return { ...state, todos: updatedTodos };
     default:

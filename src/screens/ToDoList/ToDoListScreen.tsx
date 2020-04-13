@@ -1,20 +1,12 @@
-import React, { useState } from "react";
-import {
-  TextInput,
-  GestureResponderEvent,
-  Button,
-  Text,
-  ScrollView,
-  FlatList,
-  View,
-} from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import { TodoReducer, Todos, Todo } from "../../reducers/todoReducer";
-import ToDoListItem from "./ToDoListItem";
-import styled from "styled-components/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import AddToDo from "./AddToDo";
-import { useNavigation } from "@react-navigation/native";
+import React, { useState } from 'react';
+import { TextInput, GestureResponderEvent, Button, Text, ScrollView, FlatList, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { TodoReducer, Todos, Todo } from '../../reducers/todoReducer';
+import ToDoListItem from './ToDoListItem';
+import styled from 'styled-components/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import AddToDo from './AddToDo';
+import { useNavigation } from '@react-navigation/native';
 
 const FloatingButton = styled.TouchableOpacity`
   background-color: red;
@@ -32,6 +24,7 @@ const FloatingButton = styled.TouchableOpacity`
 
 const Container = styled.View`
   flex: 1;
+  padding-top: 100px;
 `;
 
 function ToDoList() {
@@ -45,12 +38,12 @@ function ToDoList() {
         <FlatList
           data={todos}
           renderItem={({ item }) => (
-            <ToDoListItem title={item.title} description={item.description} />
+            <ToDoListItem id={item.id} date={item.date} title={item.title} description={item.description} />
           )}
           keyExtractor={(item: Todo) => item.id.toString()}
         />
       </ScrollView>
-      <FloatingButton onPress={() => navigation.navigate("AddToDo")}>
+      <FloatingButton onPress={() => navigation.navigate('AddToDo')}>
         <Text>Add Todo</Text>
       </FloatingButton>
     </Container>
@@ -61,16 +54,8 @@ const ToDoStack = createStackNavigator();
 function ToDoListScreen() {
   return (
     <ToDoStack.Navigator mode="modal">
-      <ToDoStack.Screen
-        name="ToDoList"
-        component={ToDoList}
-        options={{ headerShown: false }}
-      />
-      <ToDoStack.Screen
-        name="AddToDo"
-        component={AddToDo}
-        options={{ headerShown: false }}
-      />
+      <ToDoStack.Screen name="ToDoList" component={ToDoList} options={{ headerShown: false }} />
+      <ToDoStack.Screen name="AddToDo" component={AddToDo} options={{ headerShown: false }} />
     </ToDoStack.Navigator>
   );
 }

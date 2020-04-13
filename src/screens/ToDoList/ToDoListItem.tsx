@@ -15,11 +15,13 @@ const Container = styled.View`
   padding-horizontal: 15px;
 `;
 
-export default function ToDoListItem({ id, title, description }: Partial<Todo>) {
+export default function ToDoListItem({ id, date, title, description }: Partial<Todo>) {
   const navigation = useNavigation();
+
   const handleEditButtonPress = (): void => {
     navigation.navigate('AddToDo', {
       todoId: id,
+      todoDate: date,
       todoTitle: title,
       todoContent: description,
     });
@@ -27,10 +29,10 @@ export default function ToDoListItem({ id, title, description }: Partial<Todo>) 
 
   return (
     <Container>
-      <View style={{ display: 'flex', flexDirection: 'row' }}>
+      <View>
         <Text>{title}</Text>
         <Text>{description}</Text>
-        <Text>{id}</Text>
+        <Text>{id.toString()}</Text>
       </View>
       <TouchableOpacity onPress={handleEditButtonPress}>
         <Text>Edit</Text>
