@@ -5,7 +5,7 @@ import {
   TextInput,
   Button,
   Alert,
-  GestureResponderEvent
+  GestureResponderEvent,
 } from "react-native";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -19,19 +19,28 @@ const Container = styled.View`
   border-bottom-width: 1px;
 `;
 
-export default function AddToDo() {
+interface routeParams {
+  todoTitle?: string;
+  todoContent?: string;
+}
+export default function AddToDo({ navigation, route }) {
   const dispatch = useDispatch();
-  const navigation = useNavigation();
-  const [currentTodo, setCurrentTodo] = useState<string | null>("");
+  const { todoTitle, todoContent }: routeParams = route.params;
+  const [currentTodo, setCurrentTodo] = useState<string | null>(todoContent);
+  const [currentTodoTitle, setCurrentTodoTitle] = useState<string | null>(
+    todoTitle
+  );
 
+  navigation.setOptions({
+    tabBarVisible: false,
+  });
   const handleButtonPress = (event: GestureResponderEvent) => {
-    console.log("press");
     dispatch(
       addTodo({
         id: Symbol(Date.now()),
         date: Date.now(),
-        title: "Title",
-        description: currentTodo
+        title: currentTodoTitle,
+        description: currentTodo,
       })
     );
     setCurrentTodo("");
@@ -40,11 +49,16 @@ export default function AddToDo() {
 
   return (
     <Container>
-      <Text>add to do</Text>
-      <Text>ToDo</Text>
+      <Text>Add Your Todo</Text>
+
       <TextInput
         style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
-        onChangeText={text => setCurrentTodo(text)}
+        onChangeText={(text) => setCurrentTodoTitle(text)}
+        value={currentTodoTitle}
+      />
+      <TextInput
+        style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
+        onChangeText={(text) => setCurrentTodo(text)}
         value={currentTodo}
       />
       <Button title="Add todo" color="#841584" onPress={handleButtonPress} />

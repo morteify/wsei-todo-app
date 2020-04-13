@@ -14,7 +14,11 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Tab.Navigator>
+        <Tab.Navigator
+          tabBarOptions={{
+            keyboardHidesTabBar: true
+          }}
+        >
           <Tab.Screen name="Home" component={HomeScreen} />
           <Tab.Screen name="ToDoList" component={ToDoListScreen} />
           <Tab.Screen name="Settings" component={SettingsScreen} />

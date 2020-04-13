@@ -6,7 +6,7 @@ import {
   Text,
   ScrollView,
   FlatList,
-  View
+  View,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { TodoReducer, Todos, Todo } from "../../reducers/todoReducer";
