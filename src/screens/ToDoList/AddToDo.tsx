@@ -42,6 +42,7 @@ export default function AddToDo({ navigation, route }: AddToDoProps) {
   const doesTodoAlreadyExist = useSelector((state: TodoReducer): Array<Todo> => state.todos as Array<Todo>)
     .filter((item: Todo) => item.id == todoId)
     .some((x) => x);
+
   const [currentTodo, setCurrentTodo] = useState<string | null>(todoContent);
   const [currentTodoTitle, setCurrentTodoTitle] = useState<string | null>(todoTitle);
 

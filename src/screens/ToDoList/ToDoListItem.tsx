@@ -3,7 +3,8 @@ import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { Todo } from '../../reducers/todoReducer';
 import styled from 'styled-components/native';
 import { useNavigation } from '@react-navigation/native';
-
+import { useDispatch } from 'react-redux';
+import { removeTodo } from '../../actions';
 const Container = styled.View`
   height: 50px;
   background-color: beige;
@@ -17,7 +18,7 @@ const Container = styled.View`
 
 export default function ToDoListItem({ id, date, title, description }: Partial<Todo>) {
   const navigation = useNavigation();
-
+  const dispatch = useDispatch();
   const handleEditButtonPress = (): void => {
     navigation.navigate('AddToDo', {
       todoId: id,
@@ -27,6 +28,10 @@ export default function ToDoListItem({ id, date, title, description }: Partial<T
     });
   };
 
+  const handleRemoveButtonPress = (): void => {
+    dispatch(removeTodo({ id, date, title, description }));
+  };
+
   return (
     <Container>
       <View>
@@ -34,9 +39,14 @@ export default function ToDoListItem({ id, date, title, description }: Partial<T
         <Text>{description}</Text>
         <Text>{id.toString()}</Text>
       </View>
-      <TouchableOpacity onPress={handleEditButtonPress}>
-        <Text>Edit</Text>
-      </TouchableOpacity>
+      <View>
+        <TouchableOpacity onPress={handleRemoveButtonPress}>
+          <Text>Remove</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={handleEditButtonPress}>
+          <Text>Edit</Text>
+        </TouchableOpacity>
+      </View>
     </Container>
   );
 }
