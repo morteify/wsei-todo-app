@@ -5,6 +5,7 @@ import styled from 'styled-components/native';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import { removeTodo } from '../../actions';
+
 const Container = styled.View`
   height: 50px;
   background-color: beige;

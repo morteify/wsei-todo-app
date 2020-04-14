@@ -41,5 +41,6 @@ function todoReducer(state = initialState, action: Action) {
       return state;
   }
 }
+
 export type TodoReducer = ReturnType<typeof todoReducer>;
 export default todoReducer;
