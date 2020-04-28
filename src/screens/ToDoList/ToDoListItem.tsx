@@ -4,7 +4,7 @@ import { Todo } from "../../reducers/todoReducer";
 import styled from "styled-components/native";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch } from "react-redux";
-import { removeTodo } from "../../actions";
+import { removeTodo, toggleCheck } from "../../actions";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import MaterialCommunityIcon from "react-native-vector-icons/MaterialCommunityIcons";
 
@@ -21,7 +21,7 @@ const Container = styled.View`
 `;
 
 const Content = styled.View`
-  max-width: 75%;
+  max-width: 85%;
 `;
 
 const TodoTitle = styled.Text`
@@ -36,6 +36,7 @@ const TodoDescription = styled.Text`
 `;
 
 const SubContainer = styled.View`
+  flex: 1;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
@@ -44,7 +45,7 @@ const SubContainer = styled.View`
 const CheckboxContainer = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
-  padding: 15px;
+  padding-right: 15px;
 `;
 
 export default function ToDoListItem({ id, date, title, description }: Partial<Todo>) {
@@ -61,7 +62,7 @@ export default function ToDoListItem({ id, date, title, description }: Partial<T
   };
 
   const handleCheckboxPress = (): void => {
-    // dispatch(removeTodo({ id, date, title, description }));
+    dispatch(toggleCheck({ id }));
     if (currentCheckbox === "blank") setCurrentCheckbox("checked");
     else setCurrentCheckbox("blank");
   };
@@ -70,11 +71,11 @@ export default function ToDoListItem({ id, date, title, description }: Partial<T
     <Container>
       <TouchableOpacity onPress={handleCheckboxPress}>
         <SubContainer>
-          <CheckboxContainer>
+          <CheckboxContainer onPress={handleCheckboxPress}>
             {currentCheckbox === "blank" ? (
-              <MaterialCommunityIcon name="checkbox-blank-outline" size={26} color="#4F8EF7" />
+              <MaterialCommunityIcon name="checkbox-blank-outline" size={26} color="#B8C9AD" />
             ) : (
-              <MaterialCommunityIcon name="checkbox-marked" size={26} color="#4F8EF7" />
+              <MaterialCommunityIcon name="checkbox-marked" size={26} color="#3B9B00" />
             )}
           </CheckboxContainer>
           <Content>
@@ -85,7 +86,7 @@ export default function ToDoListItem({ id, date, title, description }: Partial<T
       </TouchableOpacity>
       <View>
         <TouchableOpacity onPress={handleEditButtonPress}>
-          <FontAwesomeIcon name="edit" size={26} color="#4F8EF7" />
+          <FontAwesomeIcon name="edit" size={22} color="#9B9B9B" />
         </TouchableOpacity>
       </View>
     </Container>

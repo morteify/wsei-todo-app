@@ -1,6 +1,6 @@
-import { ADD_TODO, REMOVE_TODO, UPDATE_TODO } from '../constants/actionTypes';
-import { AnyAction } from 'react-redux';
-import { addTodo, updateTodo, removeTodo } from '../actions';
+import { ADD_TODO, REMOVE_TODO, UPDATE_TODO, TOGGLE_CHECK } from "../constants/actionTypes";
+import { AnyAction } from "react-redux";
+import { addTodo, updateTodo, removeTodo } from "../actions";
 
 type Action = ReturnType<typeof addTodo> | ReturnType<typeof updateTodo> | ReturnType<typeof removeTodo>;
 
@@ -9,6 +9,7 @@ export interface Todo {
   date: number;
   title: string;
   description: string;
+  checked: boolean;
 }
 
 export interface Todos {
@@ -37,6 +38,14 @@ function todoReducer(state = initialState, action: Action) {
         return item;
       });
       return { ...state, todos: updatedTodos };
+    case TOGGLE_CHECK:
+      const markedTodos = state.todos.map((item: Todo, index: number) => {
+        if (item.id === action.payload.id) {
+          item.checked = !item.checked;
+        }
+        return item;
+      });
+      return { ...state, markedTodos };
     default:
       return state;
   }

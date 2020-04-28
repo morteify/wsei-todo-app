@@ -1,29 +1,37 @@
-import { ADD_TODO, REMOVE_TODO, UPDATE_TODO } from "./../constants/actionTypes";
+import { ADD_TODO, REMOVE_TODO, UPDATE_TODO, TOGGLE_CHECK } from "./../constants/actionTypes";
 
 interface Todo {
   id: Symbol;
   date: number;
   title: string;
   description: string;
+  checked: boolean;
 }
 
 export function addTodo(payload: Todo) {
   return {
     type: ADD_TODO,
-    payload
+    payload,
   };
 }
 
-export function removeTodo(payload: Todo) {
+export function removeTodo(payload: Pick<Todo, "id">) {
   return {
     type: REMOVE_TODO,
-    payload
+    payload,
   };
 }
 
 export function updateTodo(payload: Todo) {
   return {
     type: UPDATE_TODO,
-    payload
+    payload,
+  };
+}
+
+export function toggleCheck(payload: Pick<Todo, "id">) {
+  return {
+    type: TOGGLE_CHECK,
+    payload,
   };
 }
