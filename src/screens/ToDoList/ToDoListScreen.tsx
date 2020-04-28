@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { TextInput, GestureResponderEvent, Button, Text, ScrollView, FlatList, View } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import { TodoReducer, Todos, Todo } from '../../reducers/todoReducer';
-import ToDoListItem from './ToDoListItem';
-import styled from 'styled-components/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import AddToDo from './AddToDo';
-import { useNavigation } from '@react-navigation/native';
+import React, { useState } from "react";
+import { TextInput, GestureResponderEvent, Button, Text, ScrollView, FlatList, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { TodoReducer, Todos, Todo } from "../../reducers/todoReducer";
+import ToDoListItem from "./ToDoListItem";
+import styled from "styled-components/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import AddToDo from "./AddToDo";
+import { useNavigation } from "@react-navigation/native";
 
 const FloatingButton = styled.TouchableOpacity`
   background-color: red;
@@ -20,11 +20,19 @@ const FloatingButton = styled.TouchableOpacity`
   z-index: 2;
   bottom: 10px;
   right: 10px;
+  elevation: 24;
 `;
 
 const Container = styled.View`
   flex: 1;
-  padding-top: 100px;
+  padding: 10px;
+`;
+
+const TitleText = styled.Text`
+  font-weight: bold;
+  font-size: 22px;
+  padding-bottom: 10px;
+  color: #253846;
 `;
 
 function ToDoList() {
@@ -34,6 +42,7 @@ function ToDoList() {
 
   return (
     <Container>
+      <TitleText>My Todos</TitleText>
       <ScrollView>
         <FlatList
           data={todos}
@@ -43,7 +52,7 @@ function ToDoList() {
           keyExtractor={(item: Todo) => item.id.toString()}
         />
       </ScrollView>
-      <FloatingButton onPress={() => navigation.navigate('AddToDo')}>
+      <FloatingButton onPress={() => navigation.navigate("AddToDo")}>
         <Text>Add Todo</Text>
       </FloatingButton>
     </Container>
