@@ -29,12 +29,7 @@ const TextContainer = styled.View`
 export default function HomeScreen() {
   return (
     <Container>
-      <HeaderImage
-        source={{
-          uri:
-            "https://c402277.ssl.cf1.rackcdn.com/photos/18325/images/hero_full/Humpback_Whale_and_Calf_WW2131047.jpg?1576596196",
-        }}
-      />
+      <HeaderImage source={require("../../../assets/whale1.jpg")} />
       <TextContainer>
         <TitleText>Whales - facts and information</TitleText>
         <Paragraph>

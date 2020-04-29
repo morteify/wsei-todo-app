@@ -63,11 +63,7 @@ export default function Settings() {
   return (
     <RootContainer>
       <HeaderContainer>
-        <HeaderImage
-          source={{
-            uri: "https://static.polityka.pl/_resource/res/path/16/01/16017f70-332b-49e0-bfa6-2228118a6e1c_f1400x900",
-          }}
-        />
+        <HeaderImage source={require("../../../assets/marco1.jpg")} />
         <TitleContainer>
           <Title>Marco Polo</Title>
           <SubTitle>
@@ -77,12 +73,7 @@ export default function Settings() {
         </TitleContainer>
       </HeaderContainer>
       <SectionContainer>
-        <OverflownImage
-          source={{
-            uri:
-              "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Marco_Polo_Mosaic_from_Palazzo_Tursi.jpg/220px-Marco_Polo_Mosaic_from_Palazzo_Tursi.jpg",
-          }}
-        />
+        <OverflownImage source={require("../../../assets/marco2.jpg")} />
         <Paragraph>
           Marco Polo was a Venetian explorer known for the book The Travels of Marco Polo, which describes his voyage to
           and experiences in Asia. Polo traveled extensively with his family, journeying from Europe to Asia from 1271
@@ -90,12 +81,7 @@ export default function Settings() {
           way to a Mongol princess who was being sent to Persia.
         </Paragraph>
       </SectionContainer>
-      <SectionImage
-        source={{
-          uri:
-            "https://edsitement.neh.gov/sites/default/files/styles/teaser/public/resource/Marco_Polo%3B_his_travels_and_adventures_%281880%29_%2814775209831%29.jpg?itok=M60-N_74",
-        }}
-      />
+      <SectionImage source={require("../../../assets/marco3.jpg")} />
       <SectionContainer>
         <Paragraph>
           Polo was born in 1254, in Venice, Italy. Although he was born to a wealthy Venetian merchant family, much of
@@ -103,12 +89,7 @@ export default function Settings() {
           young, and his father and uncle, successful jewel merchants Niccolo and Maffeo Polo, were in Asia for much of
           Polo's youth.
         </Paragraph>
-        <OverflownImage
-          source={{
-            uri:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSB3aS7AOjuTE-3IB79TDeYtgiSmvJRivpF0AUZJUlsMmS_M30U&usqp=CAU",
-          }}
-        />
+        <OverflownImage source={require("../../../assets/marco4.jpg")} />
       </SectionContainer>
     </RootContainer>
   );
