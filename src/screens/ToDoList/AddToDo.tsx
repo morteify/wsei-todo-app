@@ -31,18 +31,52 @@ const defaultTodo = {
 };
 
 const Container = styled.View`
-  margin-top: 100px;
-  border-bottom-width: 1px;
+  flex: 1;
+  padding: 10px;
 `;
 
 const Title = styled.Text`
   font-size: 32px;
 `;
 
-const TodoInput = styled(Input)`
-  height: 40px;
+const TodoInputContainer = styled.View`
+  min-height: 25px;
   border-color: gray;
   border-width: 1px;
+  margin: 0px 5px 10px 5px;
+`;
+
+const TodoTextInput = styled.TextInput`
+  padding: 15px;
+`;
+
+const TitleText = styled.Text`
+  font-weight: bold;
+  font-size: 22px;
+  padding-bottom: 10px;
+  color: #253846;
+`;
+
+const TextDate = styled.Text`
+  padding: 10px;
+`;
+
+const CustomButton = styled.TouchableOpacity`
+  background-color: #747ef3;
+  padding: 12px;
+  border-radius: 4px;
+  elevation: 5;
+  justify-content: center;
+  align-items: center;
+  margin-horizontal: 5px;
+  margin-vertical: 8px;
+`;
+
+const CustomButtonText = styled.Text`
+  font-size: 18px;
+  max-width: 80%;
+  color: #fff;
+  text-align: center;
 `;
 
 export default function AddToDo({ navigation, route }: AddToDoProps) {
@@ -66,7 +100,6 @@ export default function AddToDo({ navigation, route }: AddToDoProps) {
           date: todoDate,
           title: currentTodoTitle,
           description: currentTodo,
-          checked: false,
         })
       );
     } else {
@@ -86,12 +119,28 @@ export default function AddToDo({ navigation, route }: AddToDoProps) {
 
   return (
     <Container>
-      <Title>{doesTodoAlreadyExist ? "Edit your todo" : "Add your todo"}</Title>
-      <Text>{moment(todoDate).format("MM/DD/YYYY HH:mm")}</Text>
+      <TitleText>{doesTodoAlreadyExist ? "Edit your todo" : "Add your todo"}</TitleText>
+      <TextDate>{moment(todoDate).format("MM/DD/YYYY HH:mm")}</TextDate>
 
-      <TodoInput placeholder="Title" onChangeText={(text) => setCurrentTodoTitle(text)} value={currentTodoTitle} />
-      <TodoInput placeholder="Description" onChangeText={(text) => setCurrentTodo(text)} value={currentTodo} />
-      <Button title={doesTodoAlreadyExist ? "Edit todo" : "Add todo"} color="#841584" onPress={handleButtonPress} />
+      <TodoInputContainer>
+        <TodoTextInput
+          multiline
+          placeholder="Title"
+          onChangeText={(text: string) => setCurrentTodoTitle(text)}
+          value={currentTodoTitle}
+        />
+      </TodoInputContainer>
+      <TodoInputContainer>
+        <TodoTextInput
+          multiline
+          placeholder="Description"
+          onChangeText={(text: string) => setCurrentTodo(text)}
+          value={currentTodo}
+        />
+      </TodoInputContainer>
+      <CustomButton onPress={handleButtonPress} backgroundColor="#BE0000">
+        <CustomButtonText>{doesTodoAlreadyExist ? "Edit todo" : "Add todo"}</CustomButtonText>
+      </CustomButton>
     </Container>
   );
 }

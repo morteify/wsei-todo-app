@@ -15,14 +15,14 @@ export function addTodo(payload: Todo) {
   };
 }
 
-export function removeTodo(payload: Pick<Todo, "id">) {
+export function removeTodo(payload: Todo) {
   return {
     type: REMOVE_TODO,
     payload,
   };
 }
 
-export function updateTodo(payload: Todo) {
+export function updateTodo(payload: Partial<Todo>) {
   return {
     type: UPDATE_TODO,
     payload,

@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { removeTodo, toggleCheck } from "../../actions";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import MaterialCommunityIcon from "react-native-vector-icons/MaterialCommunityIcons";
+import moment from "moment";
 
 const Container = styled.View`
   border-bottom-width: 1px;
@@ -47,6 +48,11 @@ const CheckboxContainer = styled.TouchableOpacity`
   padding-right: 15px;
 `;
 
+const TodoDate = styled.Text`
+  font-size: 10px;
+  text-decoration-line: ${(props) => (props.checked === "checked" ? "line-through" : "none")};
+`;
+
 export default function ToDoListItem({ id, date, title, description }: Partial<Todo>) {
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -78,6 +84,8 @@ export default function ToDoListItem({ id, date, title, description }: Partial<T
             )}
           </CheckboxContainer>
           <Content>
+            <TodoDate checked={currentCheckbox}>{moment(date).format("MM/DD/YYYY")}</TodoDate>
+
             <TodoTitle checked={currentCheckbox}>{title}</TodoTitle>
             <TodoDescription checked={currentCheckbox}>{description}</TodoDescription>
           </Content>

@@ -56,7 +56,7 @@ const RemovalModalCenteredView = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
-  margin-top: 22;
+  margin-top: 22px;
 `;
 
 const RemovalModalContent = styled.View`
@@ -112,7 +112,7 @@ function ToDoList() {
 
   const removeSelectedTodos = () => {
     selectedTodos.forEach((todo: Todo) => {
-      dispatch(removeTodo({ id: todo.id }));
+      dispatch(removeTodo(todo));
     });
   };
 
