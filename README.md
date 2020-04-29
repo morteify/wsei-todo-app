@@ -7,7 +7,7 @@
   - actions (actions for redux)
   - constants (only const variables)
   - reducers (reducers for redux)
-  - screens (all apps' screens)
+  - screens (all app's screens)
   - store (entry point for redux)
 
 ## **Usage**
