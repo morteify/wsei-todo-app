@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { Text, View, TextInput, Button, Alert, GestureResponderEvent } from 'react-native';
-import { Input } from 'react-native-elements';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigation } from '@react-navigation/native';
-import styled from 'styled-components/native';
-import { addTodo, updateTodo } from '../../actions';
-import { Todo, TodoReducer } from '../../reducers/todoReducer';
-import moment from 'moment';
+import React, { useState } from "react";
+import { Text, View, TextInput, Button, Alert, GestureResponderEvent } from "react-native";
+import { Input } from "react-native-elements";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
+import styled from "styled-components/native";
+import { addTodo, updateTodo } from "../../actions";
+import { Todo, TodoReducer } from "../../reducers/todoReducer";
+import moment from "moment";
 interface routeParams {
   todoId?: Symbol;
   todoTitle?: string;
@@ -26,8 +26,8 @@ interface AddToDoProps {
 const defaultTodo = {
   todoId: Symbol(Date.now()),
   todoDate: Date.now(),
-  todoTitle: '',
-  todoContent: '',
+  todoTitle: "",
+  todoContent: "",
 };
 
 const Container = styled.View`
@@ -40,9 +40,9 @@ const Title = styled.Text`
 `;
 
 const TodoInput = styled(Input)`
-  height: 40;
+  height: 40px;
   border-color: gray;
-  border-width: 1;
+  border-width: 1px;
 `;
 
 export default function AddToDo({ navigation, route }: AddToDoProps) {
@@ -66,6 +66,7 @@ export default function AddToDo({ navigation, route }: AddToDoProps) {
           date: todoDate,
           title: currentTodoTitle,
           description: currentTodo,
+          checked: false,
         })
       );
     } else {
@@ -75,21 +76,22 @@ export default function AddToDo({ navigation, route }: AddToDoProps) {
           date: Date.now(),
           title: currentTodoTitle,
           description: currentTodo,
+          checked: false,
         })
       );
     }
-    setCurrentTodo('');
+    setCurrentTodo("");
     navigation.goBack();
   };
 
   return (
     <Container>
-      <Title>{doesTodoAlreadyExist ? 'Edit your todo' : 'Add your todo'}</Title>
-      <Text>{moment(todoDate).format('MM/DD/YYYY HH:mm')}</Text>
+      <Title>{doesTodoAlreadyExist ? "Edit your todo" : "Add your todo"}</Title>
+      <Text>{moment(todoDate).format("MM/DD/YYYY HH:mm")}</Text>
 
       <TodoInput placeholder="Title" onChangeText={(text) => setCurrentTodoTitle(text)} value={currentTodoTitle} />
       <TodoInput placeholder="Description" onChangeText={(text) => setCurrentTodo(text)} value={currentTodo} />
-      <Button title={doesTodoAlreadyExist ? 'Edit todo' : 'Add todo'} color="#841584" onPress={handleButtonPress} />
+      <Button title={doesTodoAlreadyExist ? "Edit todo" : "Add todo"} color="#841584" onPress={handleButtonPress} />
     </Container>
   );
 }

@@ -9,7 +9,6 @@ import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import MaterialCommunityIcon from "react-native-vector-icons/MaterialCommunityIcons";
 
 const Container = styled.View`
-  /* background-color: beige; */
   border-bottom-width: 1px;
   border-bottom-color: #e0e0e0;
   display: flex;

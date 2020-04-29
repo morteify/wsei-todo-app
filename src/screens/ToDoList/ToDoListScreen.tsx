@@ -11,9 +11,10 @@ import { useNavigation } from "@react-navigation/native";
 import MaterialCommunityIcon from "react-native-vector-icons/MaterialCommunityIcons";
 
 const FloatingButton = styled.TouchableOpacity`
-  background-color: red;
-  width: 75px;
-  height: 75px;
+  background-color: #9bc67f;
+  color: red;
+  width: 65px;
+  height: 65px;
   border-radius: 50px;
   display: flex;
   justify-content: center;
@@ -22,7 +23,7 @@ const FloatingButton = styled.TouchableOpacity`
   z-index: 2;
   bottom: 10px;
   right: 10px;
-  elevation: 24;
+  elevation: 8;
 `;
 
 const Container = styled.View`
@@ -59,9 +60,43 @@ const RemovalModalCenteredView = styled.View`
 `;
 
 const RemovalModalContent = styled.View`
-  /* width: 70px;
-  height: 20px; */
-  background-color: red;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  elevation: 5;
+`;
+
+const RemovalButtonContainer = styled.View`
+  flex-direction: row;
+  padding-top: 15px;
+  justify-content: center;
+`;
+
+const RemovalButton = styled.TouchableOpacity`
+  background-color: ${(props) => props.backgroundColor};
+  padding: 12px;
+  border-radius: 4px;
+  min-width: 105px;
+  elevation: 5;
+  justify-content: center;
+  align-items: center;
+  margin-horizontal: 17.5px;
+  margin-vertical: 8px;
+`;
+
+const RemovalButtonText = styled.Text`
+  color: #fff;
+`;
+
+const RemovalModalBackground = styled.View`
+  flex: 1;
+  background-color: rgba(0, 0, 0, 0.45);
+`;
+
+const RemovalModalText = styled.Text`
+  font-size: 18px;
+  max-width: 80%;
+  text-align: center;
 `;
 
 function ToDoList() {
@@ -87,37 +122,31 @@ function ToDoList() {
         <TitleText>My Todos</TitleText>
         <DeleteButtonContainer onPress={handleRemovalButtonPress}>
           <RemoveText>Remove</RemoveText>
-          <MaterialCommunityIcon name="delete" size={28} color="#D65134" />
+          <MaterialCommunityIcon name="delete" size={28} color="#BE0000" />
           <RemovalModalCenteredView>
-            <Modal
-              animationType="slide"
-              transparent={true}
-              visible={modalVisible}
-              onRequestClose={() => {
-                Alert.alert("Modal has been closed.");
-              }}
-            >
-              <RemovalModalCenteredView>
-                <RemovalModalContent>
-                  <Text>Are you sure you want to remove selected items?</Text>
-                  <Text>{JSON.stringify(selectedTodos)}</Text>
-                  <Button
-                    onPress={handleRemovalButtonPress}
-                    title="Cancel"
-                    color="#841584"
-                    accessibilityLabel="Learn more about this purple button"
-                  />
-                  <Button
-                    onPress={() => {
-                      removeSelectedTodos();
-                      handleRemovalButtonPress();
-                    }}
-                    title="Delete"
-                    color="#841584"
-                    accessibilityLabel="Learn more about this purple button"
-                  />
-                </RemovalModalContent>
-              </RemovalModalCenteredView>
+            <Modal animationType="fade" transparent={true} visible={modalVisible}>
+              <RemovalModalBackground>
+                <RemovalModalCenteredView>
+                  <RemovalModalContent>
+                    <RemovalModalText>Are you sure you want to remove selected items?</RemovalModalText>
+                    <RemovalButtonContainer>
+                      <RemovalButton onPress={handleRemovalButtonPress} backgroundColor="#8f8787">
+                        <RemovalButtonText>Cancel</RemovalButtonText>
+                      </RemovalButton>
+
+                      <RemovalButton
+                        onPress={() => {
+                          removeSelectedTodos();
+                          handleRemovalButtonPress();
+                        }}
+                        backgroundColor="#BE0000"
+                      >
+                        <RemovalButtonText>Remove</RemovalButtonText>
+                      </RemovalButton>
+                    </RemovalButtonContainer>
+                  </RemovalModalContent>
+                </RemovalModalCenteredView>
+              </RemovalModalBackground>
             </Modal>
           </RemovalModalCenteredView>
         </DeleteButtonContainer>
@@ -132,7 +161,7 @@ function ToDoList() {
         />
       </ScrollView>
       <FloatingButton onPress={() => navigation.navigate("AddToDo")}>
-        <Text>Add Todo</Text>
+        <MaterialCommunityIcon name="plus" size={28} color="#fff" />
       </FloatingButton>
     </Container>
   );
