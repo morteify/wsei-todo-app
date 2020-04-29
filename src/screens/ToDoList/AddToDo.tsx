@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { GestureResponderEvent } from "react-native";
+import { GestureResponderEvent, Alert } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components/native";
 import { addTodo, updateTodo } from "../../actions";
@@ -98,19 +98,30 @@ export default function AddToDo({ navigation, route }: AddToDoProps) {
           description: currentTodo,
         })
       );
+      setCurrentTodo("");
+      navigation.goBack();
     } else {
-      dispatch(
-        addTodo({
-          id: Symbol(Date.now()),
-          date: Date.now(),
-          title: currentTodoTitle,
-          description: currentTodo,
-          checked: false,
-        })
-      );
+      if (currentTodo.length || currentTodoTitle.length) {
+        dispatch(
+          addTodo({
+            id: Symbol(Date.now()),
+            date: Date.now(),
+            title: currentTodoTitle,
+            description: currentTodo,
+            checked: false,
+          })
+        );
+        setCurrentTodo("");
+        navigation.goBack();
+      } else {
+        Alert.alert(
+          "Cannot add an empty Todo item",
+          "Title or description, or both of them, should be provided",
+          [{ text: "OK", onPress: () => console.log("OK Pressed") }],
+          { cancelable: false }
+        );
+      }
     }
-    setCurrentTodo("");
-    navigation.goBack();
   };
 
   useEffect(() => {
