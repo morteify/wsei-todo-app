@@ -78,7 +78,7 @@ const RemovalButton = styled.TouchableOpacity`
   padding: 12px;
   border-radius: 4px;
   min-width: 105px;
-  elevation: 5;
+  elevation: 1;
   justify-content: center;
   align-items: center;
   margin-horizontal: 17.5px;

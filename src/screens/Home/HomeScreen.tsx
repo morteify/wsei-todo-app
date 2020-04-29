@@ -1,6 +1,10 @@
-import React from 'react';
-import { StyleSheet, Image, View, ScrollView } from 'react-native';
-import styled from 'styled-components/native';
+import React from "react";
+import { StyleSheet, Image, View, ScrollView } from "react-native";
+import styled from "styled-components/native";
+
+const Container = styled.ScrollView`
+  background-color: #fff;
+`;
 
 const HeaderImage = styled.Image`
   width: 100%;
@@ -24,11 +28,11 @@ const TextContainer = styled.View`
 
 export default function HomeScreen() {
   return (
-    <ScrollView>
+    <Container>
       <HeaderImage
         source={{
           uri:
-            'https://c402277.ssl.cf1.rackcdn.com/photos/18325/images/hero_full/Humpback_Whale_and_Calf_WW2131047.jpg?1576596196',
+            "https://c402277.ssl.cf1.rackcdn.com/photos/18325/images/hero_full/Humpback_Whale_and_Calf_WW2131047.jpg?1576596196",
         }}
       />
       <TextContainer>
@@ -60,6 +64,6 @@ export default function HomeScreen() {
           opportunities for local communities to be involved with and profit from whale conservation initiatives.
         </Paragraph>
       </TextContainer>
-    </ScrollView>
+    </Container>
   );
 }

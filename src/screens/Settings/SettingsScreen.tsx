@@ -4,6 +4,7 @@ import styled from "styled-components/native";
 
 const RootContainer = styled.ScrollView`
   padding: 0;
+  background-color: #fff;
 `;
 
 const Title = styled.Text`
