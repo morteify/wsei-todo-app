@@ -29,6 +29,7 @@ const FloatingButton = styled.TouchableOpacity`
 const Container = styled.View`
   flex: 1;
   padding: 10px;
+  background-color: #fff;
 `;
 
 const TitleText = styled.Text`
@@ -99,6 +100,19 @@ const RemovalModalText = styled.Text`
   text-align: center;
 `;
 
+const NoDataContainer = styled.View`
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  margin-top: 25%;
+  padding: 5px;
+`;
+
+const NoDataImage = styled.Image`
+  width: 100%;
+  height: 250px;
+`;
+
 function ToDoList() {
   const dispatch = useDispatch();
   const navigation = useNavigation();
@@ -152,6 +166,12 @@ function ToDoList() {
         </DeleteButtonContainer>
       </HeaderContainer>
       <ScrollView>
+        {!todos.length && (
+          <NoDataContainer>
+            <NoDataImage resizeMode="contain" source={require("../../../assets/no-data.png")} />
+            <Text>Your Todo list is empty</Text>
+          </NoDataContainer>
+        )}
         <FlatList
           data={todos}
           renderItem={({ item }) => (
