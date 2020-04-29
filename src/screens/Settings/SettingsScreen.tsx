@@ -16,7 +16,6 @@ const Title = styled.Text`
 const SubTitle = styled.Text`
   font-size: 15px;
   color: #253846;
-  max-width: 90%;
 `;
 
 const HeaderContainer = styled.View`
