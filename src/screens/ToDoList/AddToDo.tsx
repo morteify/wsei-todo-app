@@ -1,12 +1,11 @@
-import React, { useState, useLayoutEffect, useEffect } from "react";
-import { Text, View, TextInput, Button, Alert, GestureResponderEvent } from "react-native";
-import { Input } from "react-native-elements";
+import React, { useState, useEffect } from "react";
+import { GestureResponderEvent } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigation } from "@react-navigation/native";
 import styled from "styled-components/native";
 import { addTodo, updateTodo } from "../../actions";
 import { Todo, TodoReducer } from "../../reducers/todoReducer";
 import moment from "moment";
+
 interface routeParams {
   todoId?: Symbol;
   todoTitle?: string;

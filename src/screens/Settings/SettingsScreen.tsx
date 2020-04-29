@@ -1,6 +1,6 @@
-import React from 'react';
-import { StyleSheet, Image, Text, View, ScrollView } from 'react-native';
-import styled from 'styled-components/native';
+import React from "react";
+import { StyleSheet, Image, Text, View, ScrollView } from "react-native";
+import styled from "styled-components/native";
 
 const RootContainer = styled.ScrollView`
   padding: 0;
@@ -13,16 +13,13 @@ const Title = styled.Text`
 `;
 
 const SubTitle = styled.Text`
-  font-size: 14px;
-  text-align: center;
+  font-size: 15px;
   color: #253846;
-  font-weight: bold;
-  padding: 5px;
+  max-width: 90%;
 `;
 
 const HeaderContainer = styled.View`
   justify-content: center;
-  align-items: center;
 `;
 
 const HeaderImage = styled.Image`
@@ -30,11 +27,17 @@ const HeaderImage = styled.Image`
   height: 200px;
 `;
 
+const SectionImage = styled.Image`
+  width: 100%;
+  height: 200px;
+  margin-vertical: 15px;
+`;
+
 const SectionContainer = styled.View`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 5px;
+  padding-horizontal: 15px;
 `;
 
 const Paragraph = styled.Text`
@@ -45,8 +48,14 @@ const Paragraph = styled.Text`
 `;
 
 const OverflownImage = styled.Image`
+  border-radius: 100px;
+  margin-horizontal: 5px;
   width: 150px;
   height: 150px;
+`;
+
+const TitleContainer = styled.View`
+  padding: 15px;
 `;
 
 export default function Settings() {
@@ -55,41 +64,48 @@ export default function Settings() {
       <HeaderContainer>
         <HeaderImage
           source={{
-            uri:
-              'https://c402277.ssl.cf1.rackcdn.com/photos/18325/images/hero_full/Humpback_Whale_and_Calf_WW2131047.jpg?1576596196',
+            uri: "https://static.polityka.pl/_resource/res/path/16/01/16017f70-332b-49e0-bfa6-2228118a6e1c_f1400x900",
           }}
         />
-        <Title>Facts about whales</Title>
-        <SubTitle>
-          They live their whole lives in water and have a lot of special qualities. Although they couldn’t look more
-          different than human beings, we have so much in common!
-        </SubTitle>
+        <TitleContainer>
+          <Title>Marco Polo</Title>
+          <SubTitle>
+            Venetian merchant and adventurer Marco Polo traveled from Europe to Asia from 1271 to 1295. He wrote 'Il
+            Milione,' known in English as 'The Travels of Marco Polo.'
+          </SubTitle>
+        </TitleContainer>
       </HeaderContainer>
       <SectionContainer>
         <OverflownImage
           source={{
             uri:
-              'https://c402277.ssl.cf1.rackcdn.com/photos/18325/images/hero_full/Humpback_Whale_and_Calf_WW2131047.jpg?1576596196',
+              "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Marco_Polo_Mosaic_from_Palazzo_Tursi.jpg/220px-Marco_Polo_Mosaic_from_Palazzo_Tursi.jpg",
           }}
         />
         <Paragraph>
-          Whales are mammals just like we are. Just like us, they breathe air, have hair, are warm-blooded, give birth
-          to live young, and feed their young milk. Whales are unique, beautiful, graceful and mysterious; they nurture,
-          form friendships, innovate, grieve, play, sing and cooperate with one another. Here are some extraordinary
-          facts about whales and their lives in the oceans.
+          Marco Polo was a Venetian explorer known for the book The Travels of Marco Polo, which describes his voyage to
+          and experiences in Asia. Polo traveled extensively with his family, journeying from Europe to Asia from 1271
+          to 1295 and remaining in China for 17 of those years. Around 1292, he left China, acting as consort along the
+          way to a Mongol princess who was being sent to Persia.
         </Paragraph>
       </SectionContainer>
+      <SectionImage
+        source={{
+          uri:
+            "https://edsitement.neh.gov/sites/default/files/styles/teaser/public/resource/Marco_Polo%3B_his_travels_and_adventures_%281880%29_%2814775209831%29.jpg?itok=M60-N_74",
+        }}
+      />
       <SectionContainer>
         <Paragraph>
-          Whales are mammals just like we are. Just like us, they breathe air, have hair, are warm-blooded, give birth
-          to live young, and feed their young milk. Whales are unique, beautiful, graceful and mysterious; they nurture,
-          form friendships, innovate, grieve, play, sing and cooperate with one another. Here are some extraordinary
-          facts about whales and their lives in the oceans.
+          Polo was born in 1254, in Venice, Italy. Although he was born to a wealthy Venetian merchant family, much of
+          Polo’s childhood was spent parentless, and he was raised by an extended family. Polo's mother died when he was
+          young, and his father and uncle, successful jewel merchants Niccolo and Maffeo Polo, were in Asia for much of
+          Polo's youth.
         </Paragraph>
         <OverflownImage
           source={{
             uri:
-              'https://c402277.ssl.cf1.rackcdn.com/photos/18325/images/hero_full/Humpback_Whale_and_Calf_WW2131047.jpg?1576596196',
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSB3aS7AOjuTE-3IB79TDeYtgiSmvJRivpF0AUZJUlsMmS_M30U&usqp=CAU",
           }}
         />
       </SectionContainer>
