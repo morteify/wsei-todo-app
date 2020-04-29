@@ -86,8 +86,8 @@ export default function ToDoListItem({ id, date, title, description }: Partial<T
           <Content>
             <TodoDate checked={currentCheckbox}>{moment(date).format("MM/DD/YYYY HH:mm")}</TodoDate>
 
-            <TodoTitle checked={currentCheckbox}>{title}</TodoTitle>
-            <TodoDescription checked={currentCheckbox}>{description}</TodoDescription>
+            {title.length > 0 && <TodoTitle checked={currentCheckbox}>{title}</TodoTitle>}
+            {description.length > 0 && <TodoDescription checked={currentCheckbox}>{description}</TodoDescription>}
           </Content>
         </SubContainer>
       </TouchableOpacity>
