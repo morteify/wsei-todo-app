@@ -84,7 +84,7 @@ export default function ToDoListItem({ id, date, title, description }: Partial<T
             )}
           </CheckboxContainer>
           <Content>
-            <TodoDate checked={currentCheckbox}>{moment(date).format("MM/DD/YYYY")}</TodoDate>
+            <TodoDate checked={currentCheckbox}>{moment(date).format("MM/DD/YYYY HH:mm")}</TodoDate>
 
             <TodoTitle checked={currentCheckbox}>{title}</TodoTitle>
             <TodoDescription checked={currentCheckbox}>{description}</TodoDescription>

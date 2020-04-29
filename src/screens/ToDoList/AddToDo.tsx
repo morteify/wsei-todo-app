@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useLayoutEffect, useEffect } from "react";
 import { Text, View, TextInput, Button, Alert, GestureResponderEvent } from "react-native";
 import { Input } from "react-native-elements";
 import { useDispatch, useSelector } from "react-redux";
@@ -30,7 +30,7 @@ const defaultTodo = {
   todoContent: "",
 };
 
-const Container = styled.View`
+const Container = styled.ScrollView`
   flex: 1;
   padding: 10px;
 `;
@@ -40,14 +40,14 @@ const Title = styled.Text`
 `;
 
 const TodoInputContainer = styled.View`
-  min-height: 25px;
+  min-height: 20px;
   border-color: gray;
   border-width: 1px;
   margin: 0px 5px 10px 5px;
 `;
 
 const TodoTextInput = styled.TextInput`
-  padding: 15px;
+  padding: 12.5px;
 `;
 
 const TitleText = styled.Text`
@@ -62,14 +62,14 @@ const TextDate = styled.Text`
 `;
 
 const CustomButton = styled.TouchableOpacity`
-  background-color: #747ef3;
+  background-color: ${(props) => props.backgroundColor};
   padding: 12px;
   border-radius: 4px;
   elevation: 5;
   justify-content: center;
   align-items: center;
   margin-horizontal: 5px;
-  margin-vertical: 8px;
+  margin-top: 8px;
 `;
 
 const CustomButtonText = styled.Text`
@@ -89,9 +89,6 @@ export default function AddToDo({ navigation, route }: AddToDoProps) {
   const [currentTodo, setCurrentTodo] = useState<string | null>(todoContent);
   const [currentTodoTitle, setCurrentTodoTitle] = useState<string | null>(todoTitle);
 
-  navigation.setOptions({
-    tabBarVisible: false,
-  });
   const handleButtonPress = (event: GestureResponderEvent) => {
     if (doesTodoAlreadyExist) {
       dispatch(
@@ -117,8 +114,20 @@ export default function AddToDo({ navigation, route }: AddToDoProps) {
     navigation.goBack();
   };
 
+  useEffect(() => {
+    const outmostStackNavigator = navigation.dangerouslyGetParent();
+
+    outmostStackNavigator.setOptions({
+      tabBarVisible: false,
+    });
+    return () =>
+      outmostStackNavigator.setOptions({
+        tabBarVisible: true,
+      });
+  }, []);
+
   return (
-    <Container>
+    <Container keyboardShouldPersistTaps="always">
       <TitleText>{doesTodoAlreadyExist ? "Edit your todo" : "Add your todo"}</TitleText>
       <TextDate>{moment(todoDate).format("MM/DD/YYYY HH:mm")}</TextDate>
 
@@ -138,8 +147,11 @@ export default function AddToDo({ navigation, route }: AddToDoProps) {
           value={currentTodo}
         />
       </TodoInputContainer>
-      <CustomButton onPress={handleButtonPress} backgroundColor="#BE0000">
+      <CustomButton onPress={handleButtonPress} backgroundColor="#747ef3">
         <CustomButtonText>{doesTodoAlreadyExist ? "Edit todo" : "Add todo"}</CustomButtonText>
+      </CustomButton>
+      <CustomButton onPress={() => navigation.goBack()} backgroundColor="#8f8787">
+        <CustomButtonText>Cancel</CustomButtonText>
       </CustomButton>
     </Container>
   );
