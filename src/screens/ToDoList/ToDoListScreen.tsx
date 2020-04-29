@@ -117,7 +117,9 @@ function ToDoList() {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const todos: Array<Todo> = useSelector((state: TodoReducer) => state.todos);
-  const selectedTodos: Array<Todo> = todos.filter((todo: Todo, index: number) => todo.checked);
+  const selectedTodos: Array<Todo> = useSelector((state: TodoReducer) =>
+    state.todos.filter((todo: Todo, index: number) => todo.checked === true)
+  );
   const [modalVisible, setModalVisible] = useState(false);
 
   const handleRemovalButtonPress = () => {
@@ -134,9 +136,13 @@ function ToDoList() {
     <Container>
       <HeaderContainer>
         <TitleText>My Todos</TitleText>
-        <DeleteButtonContainer onPress={handleRemovalButtonPress}>
-          <RemoveText>Remove</RemoveText>
-          <MaterialCommunityIcon name="delete" size={28} color="#BE0000" />
+        <DeleteButtonContainer onPress={handleRemovalButtonPress} disabled={!selectedTodos.length}>
+          {!selectedTodos.length ? (
+            <RemoveText>Remove</RemoveText>
+          ) : (
+            <RemoveText>Wybrano: {selectedTodos.length}</RemoveText>
+          )}
+          <MaterialCommunityIcon name="delete" size={28} color={selectedTodos.length ? "#BE0000" : "#9B9B9B"} />
           <RemovalModalCenteredView>
             <Modal animationType="fade" transparent={true} visible={modalVisible}>
               <RemovalModalBackground>
