@@ -90,16 +90,25 @@ export default function AddToDo({ navigation, route }: AddToDoProps) {
 
   const handleButtonPress = (event: GestureResponderEvent) => {
     if (doesTodoAlreadyExist) {
-      dispatch(
-        updateTodo({
-          id: todoId,
-          date: todoDate,
-          title: currentTodoTitle,
-          description: currentTodo,
-        })
-      );
-      setCurrentTodo("");
-      navigation.goBack();
+      if (currentTodo.length || currentTodoTitle.length) {
+        dispatch(
+          updateTodo({
+            id: todoId,
+            date: todoDate,
+            title: currentTodoTitle,
+            description: currentTodo,
+          })
+        );
+        setCurrentTodo("");
+        navigation.goBack();
+      } else {
+        Alert.alert(
+          "Cannot add an empty Todo item",
+          "Title or description, or both of them, should be provided",
+          [{ text: "OK", onPress: () => console.log("OK Pressed") }],
+          { cancelable: false }
+        );
+      }
     } else {
       if (currentTodo.length || currentTodoTitle.length) {
         dispatch(
@@ -116,7 +125,7 @@ export default function AddToDo({ navigation, route }: AddToDoProps) {
       } else {
         Alert.alert(
           "Cannot add an empty Todo item",
-          "Title or description, or both of them, should be provided",
+          "Title and description, or both of them, should be provided",
           [{ text: "OK", onPress: () => console.log("OK Pressed") }],
           { cancelable: false }
         );
